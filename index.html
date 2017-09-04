@@ -11,7 +11,11 @@
   <div class="weather__city-input">
      <form id="city__form">
       <label for="">Podaj miasto</label>
-       <input type="text" id="city__input-value">
+       <input type="text" id="city__input-value" list="cityname">
+       <datalist id="cityname">
+        <option value="Katowice">
+        <option value="Zawiercie">
+      </datalist>
        <button type="submit">Wyślij</button>
      </form>
   </div>
@@ -19,6 +23,7 @@
   <div class="weather__city-response">
     <h2 id="city__name"></h2>
     <p id="city__temp"></p>
+    <img id="temp__icon" src="" alt="">
   </div>
   
   <script src="app/js/script.js"></script>
