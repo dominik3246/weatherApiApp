@@ -2,21 +2,29 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './app/index.html',
+  template: './index.html',
   filename: 'index.html',
   inject: 'body'
 })
 
 module.exports = {
-  entry: './app/index.js',
+  context: path.join(__dirname, "src"),
+  entry: './js/index.js',
   output: {
-    path: path.resolve('dist'),
-    filename: 'index_bundle.js'
+    path: __dirname + "/src/",
+    filename: "index.min.js"
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+      { 
+        test: /\.(js|jsx)$/, 
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0'],
+          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+        }
+      }
     ]
   },
   plugins: [HtmlWebpackPluginConfig]
