@@ -1,5 +1,7 @@
 # Weather Api App
 
+In progress...
+
 Check weather in your city using API from popular weather portals.
 Build with React.
 
