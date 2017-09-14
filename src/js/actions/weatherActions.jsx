@@ -19,10 +19,20 @@ export function fetchWeather(text) {
     
     axios.get(URL)
       .then((response) => {
+      console.log(response.data.name)
         dispatch({type: "FETCH_WEATHER_FULFILLED", payload: response.data})
+        dispatch(addCityToHistory(response.data.name));
       })
       .catch((err) => {
         dispatch({type: "FETCH_WEATHER_REJECTED", payload: err})
       })
+  }
+}
+
+
+export function addCityToHistory(cityName) {
+  return (dispatch) => {
+    
+    dispatch({type: "ADD_CITY_TO_HISTORY", payload: cityName})
   }
 }

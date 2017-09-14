@@ -9,11 +9,16 @@ import DisplayWeather from './DisplayWeather.jsx';
   return {
     weather: store.weather.weather,
     fetched: store.weather.fetched,
+    citiesHistory: store.weather.citiesHistory,
   };
 })
 
 
 export default class SearchCity extends React.Component {
+  
+  citySearchHistory(city) {
+    this.props.dispatch(searchCity(city));
+  }
   render() {
     let input;
     
@@ -34,6 +39,11 @@ export default class SearchCity extends React.Component {
             Search city
           </button>
         </form>
+        
+        {this.props.citiesHistory.map((city, index) => {
+          return <li key={index}><a href="#" onClick={() => this.citySearchHistory(city)}>{city}</a></li>
+        })}
+        
         {this.props.fetched ?
           <DisplayWeather data={this.props.weather}/> :
           null

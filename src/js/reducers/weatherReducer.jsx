@@ -4,6 +4,7 @@ export default function reducer(state = {
   fetched: false,
   error: null,
   searchedCity: '',
+  citiesHistory: [],
 }, action) {
   switch (action.type) {
     case "SEARCH_CITY": {
@@ -32,6 +33,15 @@ export default function reducer(state = {
           fetched: true,
           weather: action.payload,
         }
+    }
+    case "ADD_CITY_TO_HISTORY": {
+      if (state.citiesHistory.indexOf(action.payload) == -1 ) {
+        return {
+          ...state,
+          citiesHistory: [action.payload, ...state.citiesHistory],
+        }
+      }
+      return state
     }
   }
   return state
