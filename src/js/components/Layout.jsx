@@ -1,13 +1,10 @@
 import React from 'react';
 import SearchForm from './SearchForm.jsx';
 
+const Layout = () => (
+  <div className="container">
+    <SearchForm />
+  </div>
+);
 
-export default class Layout extends React.Component {
-  render() {
-    return(
-      <div className="container">
-        <SearchForm />
-      </div>
-    );
-  }
-}
+export default Layout;
